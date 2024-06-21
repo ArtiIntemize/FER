@@ -1,0 +1,4 @@
+Flask==3.0.3
+fer==22.5.1
+opencv-contrib-python==4.10.0.84
+opencv-python==4.10.0.84

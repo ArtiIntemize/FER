@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Light gray background */
+        }
+        .container {
+            width: 80%; /* Adjust width of content */
+            display: flex; /* Use flexbox for layout */
+            justify-content: space-between; /* Space between columns */
+            align-items: flex-start; /* Align items at the top */
+            background-color: white; /* White background for content */
+            padding: 20px; /* Padding around the content */
+            border-radius: 8px; /* Rounded corners for container */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow for container */
+            overflow-x: auto; /* Enable horizontal scroll if needed */
+            margin-top: 40px; /* Increased top margin for entire container */
+        }
+        .table-container {
+            width: 48%; /* Adjust width of each table container */
+            text-align: center;
+            position: relative; /* Ensure relative positioning */
+            margin-top: 20px; /* Top margin for spacing */
+        }
+        .table-container h1 {
+            position: sticky; /* Sticky position to stay at top */
+            top: 0; /* Position at the top of the container */
+            background-color: white; /* Match container background */
+            padding: 10px 0; /* Padding for spacing */
+            z-index: 1; /* Ensure it stays above table content */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #ddd; /* Border for the table */
+            margin-top: 20px; /* Top margin for spacing */
+        }
+        th, td {
+            padding: 8px; /* Adjust padding to reduce row height */
+            text-align: center; /* Center align table data */
+            border: 1px solid #ddd; /* Border around each cell */
+        }
+        th {
+            background-color: #f2f2f2; /* Light gray background for header */
+        }
+        h1 {
+            margin-top: 0; /* Ensure no top margin by default */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="table-container">
+            <h1>Expression Data:</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Emotion</th>
+                        <th>Confidence</th>
+                        <th>Capture Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for data in expression_data %}
+                        <tr>
+                            <td>{{ data['Emotion'].title() }}</td> <!-- Display emotion name in title case -->
+                            <td>{{ data['Confidence'] }}</td>
+                            <td>{{ data['Capture Time'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="table-container">
+            <h1>Expression Counts:</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Expression</th>
+                        <th>Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for expression, count in expression_counts.items() %}
+                        <tr>
+                            <td>{{ expression.title() }}</td>
+                            <td>{{ count }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
