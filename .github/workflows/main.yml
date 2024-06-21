@@ -10,8 +10,10 @@ permissions:
   id-token: write
 
 jobs:
-  build:
+  Continuous Integration:
+    name: Continuous Integration and Test
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -32,25 +34,6 @@ jobs:
           sleep 5s
           pkill -f "python app.py"
 
-  integration:
-    name: Continuous Integration
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.x
-
-      - name: Install dependencies
-        run: |
-          pip install --upgrade pip
-          pip install -r requirements.txt
-
       - name: Lint code
         run: echo "Linting repository"
 
@@ -59,8 +42,8 @@ jobs:
 
   continuous-deployment:
     name: Continuous Deployment
-    needs: integration
     runs-on: ubuntu-latest
+    needs: Continuous Integration
 
     steps:
       - name: Checkout Code
