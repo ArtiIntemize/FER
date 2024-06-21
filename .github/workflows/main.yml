@@ -5,10 +5,6 @@ on:
     branches:
       - main
 
-permissions:
-  contents: write
-  id-token: write
-
 jobs:
   continuous_integration:
     name: Continuous Integration and Test
@@ -69,3 +65,10 @@ jobs:
         with:
           app-name: 'your-azure-web-app-name'  # Replace with your Azure Web App name
           slot-name: 'production'  # Optional: specify deployment slot
+
+      - name: Get Azure Web App URL
+        id: webapp-url
+        run: echo "::set-output name=url::https://$(az webapp show --name 'your-azure-web-app-name' --query defaultHostName -o tsv)"
+
+      - name: Display Azure Web App URL
+        run: echo "Your application is deployed to ${{ steps.webapp-url.outputs.url }}"
