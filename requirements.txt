@@ -1,4 +1,11 @@
-Flask==3.0.3
 fer==22.5.1
-opencv-contrib-python==4.10.0.84
+ffmpeg==1.4
+Flask==3.0.3
+keras==3.3.3
+matplotlib==3.9.0
+numpy==1.26.4
 opencv-python==4.10.0.84
+opencv-contrib-python==4.10.0.84
+pandas==2.2.2
+pillow==10.2.0
+tensorflow==2.16.1
